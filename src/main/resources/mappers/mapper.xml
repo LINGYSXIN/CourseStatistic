@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace扫描mapper层的接口-->
+<mapper namespace="com.example.coursestatistic.mapper.CourseMapper">
+
+<!--    id与接口中的方法名一致 resultType是结果返回-->
+    <select id="getAllCourse" resultType="com.example.coursestatistic.entity.Course">
+        select * from courses
+    </select>
+    <select id="getDayCourse" resultType="com.example.coursestatistic.entity.Course">
+        SELECT
+            Weeks,
+            'Monday' AS `day`,
+            COUNT(CASE WHEN 1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`
+        FROM
+                `students`
+                INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+            `Weekday` = 'Monday'
+    </select>
+
+
+        <select id="findWholeCourseByWeeks"  resultType="com.example.coursestatistic.entity.CourseTable">
+        SELECT
+            weeks,
+        'Monday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Monday'
+        AND #{week}  BETWEEN  weeks_Start and weeks_End
+
+        UNION ALL
+        SELECT
+            Weeks,
+        'Tuesday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Tuesday'
+        AND #{week}  BETWEEN weeks_Start and weeks_End
+
+        UNION ALL
+        SELECT
+            Weeks,
+        'Wednesday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Wednesday'
+        AND #{week}  BETWEEN weeks_Start and weeks_End
+
+        UNION ALL
+        SELECT
+            Weeks,
+        'Thursday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Thursday'
+        AND #{week}  BETWEEN weeks_Start and weeks_End
+
+        UNION ALL
+        SELECT
+            Weeks,
+        'Friday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Friday'
+        AND #{week}  BETWEEN weeks_Start and weeks_End
+
+        UNION ALL
+        SELECT
+            Weeks,
+        'Saturday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Saturday'
+        AND #{week}  BETWEEN weeks_Start and weeks_End
+
+        UNION ALL
+        SELECT
+            Weeks,
+        'Sunday' AS `day`,
+        COUNT(CASE WHEN  1 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_1`,
+        COUNT(CASE WHEN  2 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_2`,
+        COUNT(CASE WHEN  3 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_3`,
+        COUNT(CASE WHEN  4 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_4`,
+        COUNT(CASE WHEN  5 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_5`,
+        COUNT(CASE WHEN  6 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_6`,
+        COUNT(CASE WHEN  7 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_7`,
+        COUNT(CASE WHEN  8 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_8`,
+        COUNT(CASE WHEN  9 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_9`,
+        COUNT(CASE WHEN  10 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_10`,
+        COUNT(CASE WHEN  11 BETWEEN timeSlot_Start and timeSlot_End THEN 1 END) AS `slot_11`
+        FROM
+        `students`
+        INNER JOIN `courses` ON `students`.`StudentId` = `courses`.`StudentId`
+        WHERE
+        `Weekday` = 'Sunday'
+        AND  #{week}  BETWEEN weeks_Start and weeks_End
+    </select>
+
+
+</mapper>
+
+
+
+

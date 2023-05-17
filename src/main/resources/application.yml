@@ -1,0 +1,19 @@
+server:
+  port: 8880
+
+spring:
+  datasource:
+    username: root
+    password: 831015
+    url: jdbc:mysql://localhost:3306/coursestatic?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  #resources 路径下mappers目录下的配置文件
+  mapper-locations: classpath:mappers/*.xml
+  #注册实体类
+  type-aliases-package: com.example.coursestatistic.entity
+  #是指配置的日志输出信息（为了看到SQL语句）
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
